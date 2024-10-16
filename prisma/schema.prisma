@@ -23,6 +23,7 @@ model User {
   updatedAt             DateTime   @updatedAt
   accounts              Account[]
   sessions              Session[]
+  letters               Letter[]
   @@map("users")
 }
 model Account {
@@ -67,4 +68,26 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model Letter{
+  id String @id @default(cuid())
+  title String
+  content String
+  recipient String
+  scheduledDate DateTime
+  scheduledAt DateTime @default(now())
+  isPublic Boolean @default(false)
+  status LetterStatus @default(SCHEDULED)
+  userId String
+  user User @relation(fields: [userId],references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+
+}
+enum LetterStatus{
+  SCHEDULED
+  SENT
+  CANCELED
 }
