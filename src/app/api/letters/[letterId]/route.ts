@@ -71,7 +71,7 @@ export async function PUT(req: NextRequest, { params }: any) {
     );
   }
 }
-
+//schedule cancel letter
 export async function PATCH(req: NextRequest, { params }: any) {
   try {
     const { letterId } = params;
@@ -88,6 +88,7 @@ export async function PATCH(req: NextRequest, { params }: any) {
   }
 }
 
+//delete letter
 export async function DELETE(req: NextRequest, { params }: any) {
   try {
     const { letterId } = params;
